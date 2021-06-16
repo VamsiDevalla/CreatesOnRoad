@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode cameraSwitchKey;
     private float speed = 20.0f;
     private float turnSpeed = 45.0f;
     private float horizontalInput;
@@ -23,5 +26,10 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         // Move the vehicle left and right
         transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
+        if (Input.GetKeyDown(cameraSwitchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
